@@ -11,3 +11,9 @@ export const chat_groups = createReducer([], {
     return action.payload
   }
 })
+
+export const messages = createReducer({ count: null, messages:[] }, {
+  [types.GROUPME_MESSAGES_SUCCESS]: (state, action) => {
+    return action.payload
+  }
+})

@@ -11,19 +11,21 @@ class HomeScreen extends React.Component {
 
 
   render() {
+    const { token, groups, messages } = this.props
     return (
       <View style={styles.container}>
         <Text>Open up App.js to keep working on your app!</Text>
-        <Text>{this.props.groups.length}</Text>
+        <Text>{this.props.groups.length} {messages.messages.length}</Text>
         <Button title="Login" onPress={ _ => this.props.requestToken() } />
         <Button title="Message Screen" onPress={() => this.props.navigation.navigate("Messages")} />
-        <Button title={this.props.token ? this.props.token : "Request"} onPress={_ => this.props.requestGroups(this.props.token)} />
+        <Button title={this.props.token ? this.props.token : "Request"} onPress={_ => this.props.requestGroups(token)} />
+        <Button title={groups.length>0 ? groups[0].group_id : "Get Messages"} onPress={ _ => this.props.requestMessages(token, { group_id: groups[0].group_id })} />
       </View>
     );
   }
 }
 
-export default connect(s => ({ token:s.groupme_token.access_token, groups:s.chat_groups }), mapDispatchToProps)(HomeScreen)
+export default connect(s => ({ token:s.groupme_token.access_token, groups:s.chat_groups, messages: s.messages }), mapDispatchToProps)(HomeScreen)
 
 const styles = StyleSheet.create({
   container: {
