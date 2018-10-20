@@ -1,0 +1,30 @@
+// /* Get Permissions */
+// const { permissions } = await Permissions.getAsync( Permissions.CONTACTS, Permissions.SMS, Permissions.NOTIFICATIONS )
+// const toAsk = Object.keys(permissions).filter( x => permissions[x].status !== "granted" )
+// if(toAsk.length > 0) await Permissions.askAsync(...toAsk)
+//
+//
+// /* Get Contacts List */
+// const { data } = await Contacts.getContactsAsync({
+//   fields: [Contacts.Fields.Name],
+// });
+//
+
+
+const DISCORD_CLIENT_ID = "503187612509536266"
+const DISCORD_CLIENT_SECRET = "C5TyTelyRU3Kv4A6MCrSULVzjtXutdeA"
+const DISCORD_API_ENDPOINT = 'https://discordapp.com/api/v6'
+const DISCORD_SCOPE = "messages.read identify"
+
+
+
+function JSON_to_URLEncoded(element,key,list){
+  var list = list || [];
+  if(typeof(element)=='object'){
+    for (var idx in element)
+      JSON_to_URLEncoded(element[idx],key?key+'['+idx+']':idx,list);
+  } else {
+    list.push(key+'='+encodeURIComponent(element));
+  }
+  return list.join('&');
+}
