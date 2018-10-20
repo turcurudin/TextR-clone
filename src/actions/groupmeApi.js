@@ -21,6 +21,14 @@ export function requestGroups(token, page = 1, per_page = 10) {
   }).then(getJson).then( r => r.response )
 }
 
+export function requestChats(token, page = 1, per_page = 10) {
+  return fetch(GROUPME_API_ENDPOINT + "/chats" +
+    `?page=${page}` +
+    `&per_page=${per_page}`, {
+      headers: { "X-Access-Token" : token }
+    }).then(getJson).then( r => r.response )
+}
+
 export function requestMessages(token, { before_id, group_id, after_id, limit = 100} ) {
 
   return fetch( GROUPME_API_ENDPOINT + `/groups/${group_id}/messages` +
@@ -30,4 +38,15 @@ export function requestMessages(token, { before_id, group_id, after_id, limit = 
     , {
     headers: { "X-Access-Token" : token }
   }).then(getJson).then(x => x.response)
+}
+
+export function postMessageToGroup(token, { text, group_id, uuid }) {
+  return fetch( GROUPME_API_ENDPOINT + `/groups/${group_id}/messages` , {
+    method:"POST",
+    headers: { "X-Access-Token" : token },
+    body: JSON.stringify({
+      text,
+      source_guid: uuid
+    })
+  })
 }
