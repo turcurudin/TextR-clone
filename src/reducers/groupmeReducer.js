@@ -17,3 +17,9 @@ export const messages = createReducer({ count: null, messages:[] }, {
     return action.payload
   }
 })
+
+export const direct_chatrooms = createReducer([], {
+  [types.GROUPME_CHATS_SUCCESS]: (state, action) => {
+    return action.payload
+  }
+})
