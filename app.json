@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.khe18.textr"
+    },
+    "android": {
+      "package": "com.khe18.textr"
     }
   }
 }
