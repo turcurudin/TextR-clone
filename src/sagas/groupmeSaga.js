@@ -39,7 +39,7 @@ function* chatsRequestSaga({ payload: { token, page, per_page }}) {
 
 function* groupMessagesRequestSaga({ payload: { token, group_id, before_id = undefined, after_id=undefined, limit = undefined }}) {
   try {
-    const response = yield call(groupmeApi.requestMessages, token, { group_id, before_id, after_id, limit })
+    const response = yield call(groupmeApi.requestGroupMessages, token, { group_id, before_id, after_id, limit })
     yield put({ type:types.GROUPME_MESSAGES_SUCCESS, payload:response })
   } catch(error) {
     yield put({ type: types.GROUPME_API_FAILED, error });

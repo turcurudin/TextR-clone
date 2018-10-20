@@ -29,7 +29,7 @@ export function requestChats(token, page = 1, per_page = 10) {
     }).then(getJson).then( r => r.response )
 }
 
-export function requestMessages(token, { before_id, group_id, after_id, limit = 100} ) {
+export function requestGroupMessages(token, { before_id, group_id, after_id, limit = 100} ) {
 
   return fetch( GROUPME_API_ENDPOINT + `/groups/${group_id}/messages` +
     `?limit=${limit}`

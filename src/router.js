@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator, addNavigationHelpers,  } from 'react-navigation';
-import { HomeScreen, MessageScreen } from './Screens';
+import { HomeScreen, MessageScreen, TestScreen } from './Screens';
 
 export default createStackNavigator({
   Home: {
@@ -8,5 +8,8 @@ export default createStackNavigator({
   },
   Messages: {
     screen: MessageScreen
+  },
+  Test: {
+    screen: TestScreen
   }
 })
