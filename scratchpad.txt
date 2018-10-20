@@ -31,3 +31,31 @@ function JSON_to_URLEncoded(element,key,list){
 
 
 X-Access-Token
+
+
+constructor() {
+  super();
+  this.state = {
+    groupme_token: null,
+    groups:null,
+  }
+}
+
+async loginAsync() {
+  const redirectUrl = AuthSession.getRedirectUrl();
+  const codeResult = await AuthSession.startAsync({
+    authUrl: GROUPME_OAUTH_ENDPOINT
+  });
+  if( codeResult.type !== "success" ) throw new Exception("Auth Token Error")
+
+  const groups = await fetch( GROUPME_API_ENDPOINT + "/groups", {
+    headers: { "X-Access-Token" : codeResult.params.access_token }
+  })
+
+  this.setState({
+    groupme_token: codeResult.params.access_token,
+    groups: await groups.json()
+  })
+
+
+}

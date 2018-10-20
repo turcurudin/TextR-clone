@@ -8,8 +8,13 @@ export function requestToken() {
   return AuthSession.startAsync({ authUrl: GROUPME_OAUTH_ENDPOINT });
 }
 
-export function requestGroups(token) {
-  return fetch( GROUPME_API_ENDPOINT + "/groups", {
-    headers: { "X-Access-Token" :token }
-  })
+export function requestGroups(token, page = 1, per_page = 10) {
+  return fetch( GROUPME_API_ENDPOINT + "/groups" +
+  `?page=${page}` +
+  `&per_page=${per_page}`, {
+    headers: { "X-Access-Token" : token }
+  }).then( r => {
+    if(!r.ok) throw new Error("FETCH ERROR")
+    return r.json()
+  }).then( r => r.response )
 }
