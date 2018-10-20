@@ -40,6 +40,14 @@ export function requestGroupMessages(token, { before_id, group_id, after_id, lim
   }).then(getJson).then(x => x.response)
 }
 
+export function requestChatMessages(token, { before_id, id, after_id } ) {
+  return fetch( GROUPME_API_ENDPOINT + "/direct_messages" +
+    `?other_user_id=${id}`
+  , {
+    headers: { "X-Access-Token" : token }
+  }).then(getJson).then(x => x.response)
+}
+
 export function postMessageToGroup(token, { text, group_id, uuid }) {
   return fetch( GROUPME_API_ENDPOINT + `/groups/${group_id}/messages` , {
     method:"POST",

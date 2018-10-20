@@ -20,9 +20,9 @@ export function requestChats(token, page, per_page) {
   } }
 }
 
-export function requestMessages(token, { group_id, before_id = undefined, after_id = undefined, limit = undefined }) {
+export function requestMessages(token, { type = "group", id, before_id = undefined, after_id = undefined, limit = undefined }) {
   return { type: types.GROUPME_MESSAGES_REQUESTED, payload: {
-    token, group_id, before_id, after_id, limit
+    token, group_id:id, id, before_id, after_id, limit, type
   } }
 }
 
