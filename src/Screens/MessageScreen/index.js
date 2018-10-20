@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, KeyboardAvoidingView, Alert, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, KeyboardAvoidingView, Alert, Keyboard, FlatList } from 'react-native';
 import { Permissions, SMS, Contacts, AuthSession } from 'expo';
 import { Header } from 'react-navigation';
 
@@ -24,9 +24,28 @@ export default class MessageScreen extends React.Component {
         keyboardVerticalOffset = {Header.HEIGHT + 20}
         style={styles.mainWindow} behavior="padding">
         
-        <View style={styles.container}>
-            <Text>Hi from messages</Text>
-        </View>
+        <FlatList style={styles.container} //I'm assuming that a FlatList is the optimal choice for displaying list of messages.
+         data={[
+            {key: 'This is a sample message', Sender: 'Me'},
+            {key: 'This is a sample response', Sender: 'You'},
+            {key: 'This is a sample message', Sender: 'Me'},
+            {key: 'This is a sample response', Sender: 'You'},
+            {key: 'This is a sample message', Sender: 'Me'},
+            {key: 'This is a sample response', Sender: 'You'},
+            {key: 'This is a sample message', Sender: 'Me'},
+            {key: 'This is a sample response', Sender: 'You'},
+            {key: 'This is a sample message', Sender: 'Me'},
+            {key: 'This is a sample response', Sender: 'You'},
+            {key: 'This is a sample message', Sender: 'Me'},
+            {key: 'This is a sample response', Sender: 'You'}
+          ]}
+          renderItem={({item}) => 
+              <View style={[styles.messages, item.Sender === 'Me' ? styles.receivedMSG : styles.sentMSG]}>
+              <Text>
+                {item.key}
+              </Text>
+              </View>}
+        />
       <View style={styles.textEntry}>
             <TextInput
                 style={{padding: 10, flex: 2}}
@@ -55,18 +74,34 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   mainWindow: {
-      flex: 1, 
-      flexDirection: 'column', 
-      justifyContent: 'flex-end'
+    flex: 1, 
+    flexDirection: 'column', 
+    justifyContent: 'flex-end',
   },
   textEntry: {
     backgroundColor: 'aliceblue', 
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    padding: 5
+    padding: 5,
+  },
+  messages: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: 10,
+    margin: 5,
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+  sentMSG: {
+    alignSelf: 'flex-end',
+    backgroundColor: 'lightskyblue',
+  },
+  receivedMSG: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'beige',
   },
 });
