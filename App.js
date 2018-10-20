@@ -1,11 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { SearchBar } from 'react-native-elements'
+import { Icon } from 'react-native-elements'
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <SearchBar
+          darkTheme
+          round
+          inputStyle={{backgroundColor: 'white', width: 344}}
+          platform="android"
+          clearIcon='g-translate'
+          placeholder='Search'
+          placeholderTextColor='grey'
+        />
       </View>
     );
   }
@@ -13,8 +23,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: .158,
     alignItems: 'center',
     justifyContent: 'center',
   },
