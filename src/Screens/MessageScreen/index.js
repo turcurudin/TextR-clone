@@ -76,37 +76,32 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   mainWindow: {
-      flex: 1, 
-      flexDirection: 'column', 
-      justifyContent: 'flex-end'
+    flex: 1, 
+    flexDirection: 'column', 
+    justifyContent: 'flex-end',
   },
   textEntry: {
     backgroundColor: 'aliceblue', 
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    padding: 5
-  },
-  item: {
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 5,
   },
   messages: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: 10,
-    marginTop: 10,
+    margin: 5,
     borderRadius:10,
     borderWidth: 1,
     borderColor: '#fff'
   },
   sentMSG: {
-    alignItems: 'flex-start',
+    alignSelf: 'flex-end',
     backgroundColor: 'lightskyblue',
   },
   receivedMSG: {
-    alignItems: 'flex-end',
+    alignSelf: 'flex-start',
     backgroundColor: 'beige',
   },
 });
