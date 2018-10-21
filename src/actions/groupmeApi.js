@@ -13,6 +13,12 @@ export function requestToken() {
   return AuthSession.startAsync({ authUrl: GROUPME_OAUTH_ENDPOINT });
 }
 
+export function requestUser(token) {
+  return fetch( GROUPME_API_ENDPOINT + "/users/me", {
+    headers: { "X-Access-Token" : token }
+  } ).then(getJson).then( r => r.response ) 
+}
+
 export function requestGroups(token, page = 1, per_page = 10) {
   return fetch( GROUPME_API_ENDPOINT + "/groups" +
   `?page=${page}` +

@@ -4,6 +4,10 @@ export function requestToken() {
   return { type: types.GROUPME_LOGIN_REQUESTED }
 }
 
+export function requestUser(token) {
+  return { type: types.GROUPME_USER_REQUESTED, payload:{ token } }
+}
+
 export function requestGroups(token, page, per_page) {
   return { type: types.GROUPME_GROUPS_REQUESTED, payload:{
     token,

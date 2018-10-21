@@ -4,6 +4,7 @@ import { types } from "../actions";
 
 export function* watcherSaga() {
   yield takeLatest(types.GROUPME_LOGIN_REQUESTED, loginSaga);
+  yield takeLatest(types.GROUPME_USER_REQUESTED, getUserSaga);
   yield takeLatest(types.GROUPME_GROUPS_REQUESTED, groupsRequestSaga)
   yield takeLatest(types.GROUPME_MESSAGES_REQUESTED, groupMessagesRequestSaga)
   yield takeLatest(types.GROUPME_CHATS_REQUESTED, chatsRequestSaga)
@@ -16,6 +17,15 @@ function* loginSaga() {
     yield put({ type:types.GROUPME_LOGIN_SUCCESS, payload:{ ...response.params } });
   } catch (error) {
     yield put({ type: types.GROUPME_API_FAILED, error });
+  }
+}
+
+function* getUserSaga({ payload: { token }}) {
+  try {
+    const response = yield call(groupmeApi.requestUser, token)
+    yield put({ type:types.GROUPME_USER_SUCCESS, payload: response })
+  } catch(error) {
+    yield put({ type: types.GROUPME_API_FAILED })
   }
 }
 

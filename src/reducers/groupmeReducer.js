@@ -23,3 +23,18 @@ export const direct_chatrooms = createReducer([], {
     return action.payload
   }
 })
+
+export const user_data = createReducer({
+  id: null,
+  phone_number: null,
+  image_url: null,
+  name: null,
+  created_at: null,
+  updated_at: null,
+  email: null,
+  sms:null
+} , {
+  [types.GROUPME_USER_SUCCESS]: (state,action) => {
+    return action.payload
+  }
+})
