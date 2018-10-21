@@ -30,16 +30,16 @@ class MessageScreen extends React.Component {
   })
 
   render() {
-
+    const { user, messages } = this.props
     return (
       <KeyboardAvoidingView
         keyboardVerticalOffset = {Header.HEIGHT + 20}
         style={styles.mainWindow} behavior="padding">
 
         <FlatList style={styles.container}
-         data={ this.props.messages ? (this.props.messages.messages || this.props.messages.direct_messages) : []}
+         data={ messages ? (messages.messages || messages.direct_messages).map(x=>({...x, key:x.id})) : []}
           renderItem={({item}) =>
-              <View key={item.id} style={[styles.messages, item.Sender === 'Me' ? styles.receivedMSG : styles.sentMSG]}>
+              <View key={item.id} style={[styles.messages, item.user_id === user.id ? styles.receivedMSG : styles.sentMSG]}>
               <Text>
                 {item.text}
               </Text>
@@ -69,7 +69,7 @@ class MessageScreen extends React.Component {
   }
 }
 
-export default connect(s => ({ token:s.groupme_token.access_token, groups:s.chat_groups, messages: s.messages, chats:s.direct_chatrooms }), mapDispatchToProps)(MessageScreen)
+export default connect(s => ({ user: s.user_data, token:s.groupme_token.access_token, groups:s.chat_groups, messages: s.messages, chats:s.direct_chatrooms }), mapDispatchToProps)(MessageScreen)
 
 const styles = StyleSheet.create({
   container: {
