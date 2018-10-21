@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator, addNavigationHelpers,  } from 'react-navigation';
-import { HomeScreen, MessageScreen, TestScreen } from './Screens';
+import { HomeScreen, MessageScreen, TestScreen, GroupScreen } from './Screens';
 
 export default createStackNavigator({
   Home: {
@@ -11,5 +11,8 @@ export default createStackNavigator({
   },
   Test: {
     screen: TestScreen
+  },
+  Group: {
+      screen: GroupScreen
   }
 })

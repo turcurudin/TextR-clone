@@ -21,6 +21,7 @@ class HomeScreen extends React.Component {
         <Button title={this.props.token ? this.props.token : "Request Chats"} onPress={_ => this.props.requestChats(token)} />
         <Button title={groups.length>0 ? groups[0].group_id : "Get Messages"} onPress={ _ => this.props.requestMessages(token, { id: groups[0].group_id })} />
         <Button title={chats.length>0 ? chats[0].other_user.id : "Get Messages"} onPress={ _ => this.props.requestMessages(token, { type:"chat", id: chats[0].other_user.id })} />
+        <Button title = "Group Chats" onPress = { _ => this.props.navigation.navigate("Groups", { Groups:groups })} />
       </View>
     );
   }
